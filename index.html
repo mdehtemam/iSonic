@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iSonic - Music Player</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Font Awesome for easy icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app">
+        <!-- 1. LEFT MENU -->
+        <div class="sidebar" id="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <div class="logo">
+                    <!-- Replace SVG with Font Awesome icon -->
+                    <i class="fa-solid fa-music logo-icon"></i>
+                    <h1>iSonic</h1>
+                </div>
+                <button class="mobile-close" id="mobileClose"><i class="fa-solid fa-times"></i></button>
+            </div>
+            
+            <!-- Menu Buttons -->
+            <div class="nav-section">
+                <button class="nav-item active" data-view="home"><i class="fa-solid fa-home"></i> Home</button>
+                <button class="nav-item" data-view="library"><i class="fa-solid fa-book"></i> Your Library</button>
+                <button class="nav-item" data-view="browse"><i class="fa-solid fa-search"></i> Browse Music</button>
+            </div>
+            
+            <!-- Quick Access -->
+            <div class="quick-section">
+                <button class="quick-item" data-view="liked">
+                    <i class="fa-solid fa-heart"></i> Liked Songs 
+                    <span id="likedCount" class="count">0</span>
+                </button>
+                <button class="quick-item" data-view="recent">
+                    <i class="fa-solid fa-clock"></i> Recently Played 
+                    <span id="recentCount" class="count">0</span>
+                </button>
+            </div>
+            
+            <!-- Playlists -->
+             <div class="playlists-container">
+                    <div class="playlists-header">
+                        <h5>Your Playlists</h5>
+                        <button class="add-playlist" id="addPlaylist">
+                            <!-- Replace SVG with Font Awesome icon -->
+                            <i class="fa-solid fa-plus"></i>
+                            Create New Playlist
+                        </button>
+                    </div>
+                    <div id="playlistsList">
+                        Playlists appear here
+                    </div>
+                </div>
+        </div>
+      <!--LEFT MANU HERE  -->
+
+        <!-- 2. MAIN CONTENT -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="header">
+                <button class="mobile-menu" id="mobileMenu"><i class="fa-solid fa-bars"></i></button>
+                <h2 id="pageTitle">Home</h2>
+            </div>
+            
+            <!-- Content Changes Here -->
+            <div class="content-area" id="contentArea">
+                <!-- Songs and content show here -->
+            </div>
+        </div>
+
+        <!-- 3. BOTTOM PLAYER -->
+        <div class="player-controls">
+            <!-- Song Info -->
+            <div class="player-info">
+                <div class="song-cover"></div>
+                <div class="song-details">
+                    <div class="song-title" id="currentSongTitle">No song</div>
+                    <div class="song-artist" id="currentSongArtist">No artist</div>
+                </div>
+                <button id="likeCurrentSong" class="like-current"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            
+            <!-- Main Player Controls -->
+            <div class="player-main">
+                <div class="player-buttons">
+                    <button id="shuffleBtn" title="Shuffle"><i class="fa-solid fa-random"></i></button>
+                    <button id="prevBtn" title="Previous"><i class="fa-solid fa-backward"></i></button>
+                    <button id="playPauseBtn">
+                        <span class="play-icon"><i class="fa-solid fa-play"></i></span>
+                        <span class="pause-icon" style="display: none;"><i class="fa-solid fa-pause"></i></span>
+                    </button>
+                    <button id="nextBtn" title="Next"><i class="fa-solid fa-forward"></i></button>
+                    <button id="repeatBtn" title="Repeat"><i class="fa-solid fa-repeat"></i></button>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="progress-section">
+                    <span id="currentTime">0:00</span>
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress-fill" id="progressFill"></div>
+                        <div class="progress-handle"></div>
+                    </div>
+                    <span id="totalTime">0:00</span>
+                </div>
+            </div>
+            
+            <!-- Volume Controls -->
+            <div class="player-volume">
+                <button id="muteBtn" class="volume-icon" title="Mute/Unmute">🔊</button>
+                <div class="volume-bar" id="volumeBar">
+                    <div class="volume-fill"></div>
+                    <div class="volume-handle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. POPUP FOR NEW PLAYLIST -->
+    <div class="modal hidden" id="createPlaylistModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Playlist</h3>
+                <button id="modalClose" class="modal-close">✕</button>
+            </div>
+            <input type="text" id="playlistNameInput" placeholder="Playlist name">
+            <div class="modal-actions">
+                <button id="cancelPlaylist">Cancel</button>
+                <button id="confirmPlaylist">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Audio Player -->
+    <audio id="audioPlayer"></audio>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
